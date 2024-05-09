@@ -13,7 +13,6 @@ class Cipher:
     def getCoded(self):
         return self.coded
 
-# Por medio del metodo de Gauss
 def determinante_gauss(matriz:list[list]):
     matriz = gauss(matriz)
     determinante = 1
@@ -21,25 +20,6 @@ def determinante_gauss(matriz:list[list]):
         determinante *= matriz[x][x] 
     return determinante
 
-def eq_sarrus(extendida:list[list]):
-    coeficientes = []
-    constante = []
-    for eq in extendida:
-        coeficientes.append(eq[:-1].copy())
-        constante.append(eq[-1])
-    det = determinante(coeficientes)
-    resultado = []
-    for x in range(len(extendida)):
-        matriz = []
-        for i in range(len(coeficientes)):
-            matriz.append(coeficientes[i].copy())
-            matriz[i][x] = constante[i]
-            
-        resultado.append(f"{determinante(matriz)}/{det}")
-    return resultado
-
-
-# Por medio del metodo de Sarrus
 def determinante(matriz:list[list]):
     matriz = [matriz[x].copy() for x in range(len(matriz))]
     for x in range(len(matriz)-1):
@@ -242,3 +222,37 @@ def markov(tabla:list[list], probabilidades:list[list], periodos:int):
     for p in range(periodos):
         probabilidades = multiplicacion(transicion, probabilidades)
     return probabilidades
+
+def suma(a:list[list], b:list[list]):
+    matriz_suma = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    n=-1
+    for i in range(0,len(a),1):
+        n+=1
+        f=a[n]
+        r=b[n]
+        t=matriz_suma[n]
+        for y in range(0,len(f),1):
+            matriz_suma[y] = f[j] + r[j]
+    return matriz_suma
+
+def resta(a:list[list], b:list[list]):
+    matriz_resta = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    n=-1
+    for i in range(0,len(a),1):
+        n+=1
+        f=a[n]
+        r=b[n]
+        t=matriz_resta[n]
+        for y in range(0,len(f),1):
+            matriz_resta[y] = f[y] + r[y]
+    return matriz_resta
+
+def producto_punto(a:list[list],b):
+    matriz_producto = = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    n=-1
+    for i in range(0,len(a),1):
+        n+=1
+        f=a[n]
+        r=matriz_producto[n]
+        for y in range(0,len(f),1):
+            matriz_producto[y] = a[y] * b
