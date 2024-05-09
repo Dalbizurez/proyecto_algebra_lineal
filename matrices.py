@@ -244,7 +244,7 @@ def resta(a:list[list], b:list[list]):
         r=b[n]
         t=matriz_resta[n]
         for y in range(0,len(f),1):
-            t[y] = f[y] + r[y]
+            t[y] = f[y] - r[y]
     return matriz_resta
 
 def producto_punto(a:list[list],b):
