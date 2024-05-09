@@ -224,19 +224,19 @@ def markov(tabla:list[list], probabilidades:list[list], periodos:int):
     return probabilidades
 
 def suma(a:list[list], b:list[list]):
-    matriz_suma = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    matriz_suma = [[0 for rows in range(len(a[0]))].copy() for cols in range(len(a))]
     n=-1
     for i in range(0,len(a),1):
-        n+=1
-        f=a[n]
-        r=b[n]
-        t=matriz_suma[n]
+        n =  n + 1
+        f=a[i]
+        r=b[i]
+        t=matriz_suma[i]
         for y in range(0,len(f),1):
-            r[y] = f[y] + r[y]
+            t[y] = f[y] + r[y]
     return matriz_suma
 
 def resta(a:list[list], b:list[list]):
-    matriz_resta = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    matriz_resta = [[0 for rows in range(len(a[0]))].copy() for cols in range(len(a))]
     n=-1
     for i in range(0,len(a),1):
         n+=1
