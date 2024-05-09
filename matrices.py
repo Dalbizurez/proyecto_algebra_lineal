@@ -232,7 +232,7 @@ def suma(a:list[list], b:list[list]):
         r=b[n]
         t=matriz_suma[n]
         for y in range(0,len(f),1):
-            matriz_suma[y] = f[j] + r[j]
+            matriz_suma[y] = f[y] + r[y]
     return matriz_suma
 
 def resta(a:list[list], b:list[list]):
@@ -248,7 +248,7 @@ def resta(a:list[list], b:list[list]):
     return matriz_resta
 
 def producto_punto(a:list[list],b):
-    matriz_producto = = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    matriz_producto = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
     n=-1
     for i in range(0,len(a),1):
         n+=1
