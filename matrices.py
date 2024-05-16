@@ -1,3 +1,5 @@
+import Math
+
 class Cipher:
     def __init__(self,  key:list[list]) -> None:
         self.key = key
@@ -256,3 +258,32 @@ def producto_punto(a:list[list],b):
         r=matriz_producto[n]
         for y in range(0,len(f),1):
             r[y] = a[y] * b
+    return matriz_producto
+
+def magnitud(a, b):
+    mag = ((b**2)+(a**2))**0.5
+    return mag
+
+def algulo(a, b):
+    if a == 0:
+        r = 'Error'
+        return r
+    else :
+        if a < 0 and b < 0:
+            a = a * (-1)
+            b = b * (-1)
+        elif a < 0:
+            a = a * (-1)
+        elif b < 0:
+            b = b * (-1) 
+
+        algulo = math.atan(b/a)
+        return algulo
+
+def componentes(a, b):
+    componentex = a * math.sin(b)
+    componentey = a * math.cos(b)
+
+    componentes = [componentex, componentey]
+
+    return componentes
