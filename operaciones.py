@@ -1,7 +1,7 @@
 from ui.operaciones_ui import Ui_MainWindow
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QApplication, QTextEdit
-from matrices import multiplicacion, suma, resta
+from matrices import multiplicacion, suma, resta, producto_punto
 from UI_operations import *
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -12,7 +12,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_suma.clicked.connect(self.suma)
         self.btn_resta.clicked.connect(self.resta)
         self.btn_multiplicacion.clicked.connect(self.multiplicacion)
-        self.btn_division.clicked.connect(self.division)
+        self.btn_division.clicked.connect(self.producto_punto)
         self.btn_division.setEnabled(False)
         self.btn_suma.setEnabled(False)
         self.btn_multiplicacion.setEnabled(False)
@@ -34,7 +34,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if resultado:
             self.txt_resultado.setPlainText(str_matriz(resultado))
         else:
-            self.txt_resultado.setPlainText("No se puede realizar la operacion, por favor revise eque el numero de columnas de la matriz 1 sea igual al numero de filas de la matriz 2")
+            self.txt_resultado.setPlainText("No se puede realizar la operacion, para sumar es necesario que las matrices tengan el mismo orden")
 
     def resta(self):
         m1 = get_matriz(self.txt_matriz1)
@@ -43,7 +43,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if resultado:
             self.txt_resultado.setPlainText(str_matriz(resultado))
         else:
-            self.txt_resultado.setPlainText("No se puede realizar la operacion, por favor revise eque el numero de columnas de la matriz 1 sea igual al numero de filas de la matriz 2")
+            self.txt_resultado.setPlainText("No se puede realizar la operacion, para restar es necesario que las matrices tengan el mismo orden")
 
     def multiplicacion(self):
         m1 = get_matriz(self.txt_matriz1)
@@ -52,10 +52,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if resultado:
             self.txt_resultado.setPlainText(str_matriz(resultado))
         else:
-            self.txt_resultado.setPlainText("No se puede realizar la operacion, por favor revise eque el numero de columnas de la matriz 1 sea igual al numero de filas de la matriz 2")
+            self.txt_resultado.setPlainText("No se puede realizar la operacion, por favor revise que el numero de columnas de la matriz 1 sea igual al numero de filas de la matriz 2")
 
-    def division(self):
-        pass
+    def producto_punto(self):
+        m1 = get_matriz(self.txt_matriz1)
+        m2 = get_matriz(self.txt_matriz2)
+        resultado = producto_punto(m1, m2)
+        if resultado:
+            self.txt_resultado.setPlainText(str_matriz(resultado))
+        else:
+            self.txt_resultado.setPlainText("No se puede realizar la operacion")
 
     def validar(self, widget:QTextEdit):
         valid = validar_matriz(widget)
