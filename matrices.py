@@ -46,6 +46,10 @@ def cuadrada(matriz:list[list]):
     return cols == rows
 
 def inversa_gj(matriz:list[list]):
+    if determinante_gauss(matriz) == 0:
+        return 0
+    if not cuadrada(matriz):
+        return -1
     matriz = [matriz[x].copy() for x in range(len(matriz))]
 
     for r in range(len(matriz)):
@@ -217,7 +221,8 @@ def transpuesta(matriz:list[list]):
             transpuesta[y][x] = matriz[x][y]
     return transpuesta
             
-
+def orden(matriz:list[list]):
+    return len(matriz), len(matriz[0])
 
 def markov(tabla:list[list], probabilidades:list[list], periodos:int):
     transicion = transpuesta(tabla) 
@@ -226,6 +231,8 @@ def markov(tabla:list[list], probabilidades:list[list], periodos:int):
     return probabilidades
 
 def suma(a:list[list], b:list[list]):
+    if orden(a) != orden(b):
+        return
     matriz_suma = [[0 for rows in range(len(a[0]))].copy() for cols in range(len(a))]
     n=-1
     for i in range(0,len(a),1):
@@ -238,6 +245,8 @@ def suma(a:list[list], b:list[list]):
     return matriz_suma
 
 def resta(a:list[list], b:list[list]):
+    if orden(a) != orden(b):
+        return
     matriz_resta = [[0 for rows in range(len(a[0]))].copy() for cols in range(len(a))]
     n=-1
     for i in range(0,len(a),1):
@@ -250,14 +259,17 @@ def resta(a:list[list], b:list[list]):
     return matriz_resta
 
 def producto_punto(a:list[list],b):
-    matriz_producto = [[0 for rows in range(len(a))].copy() for cols in range(len(a[0]))]
+    if orden(b) != (1, 1):
+        return
+    b = b[0][0]
+    matriz_producto = [[0 for cols in range(len(a[0]))].copy() for rows in range(len(a))]
     n=-1
     for i in range(0,len(a),1):
         n+=1
-        f=a[n]
-        r=matriz_producto[n]
+        f=a[i]
+        r=matriz_producto[i]
         for y in range(0,len(f),1):
-            r[y] = a[y] * b
+            r[y] = f[y] * b
     return matriz_producto
 
 def magnitud(a, b):
