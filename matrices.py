@@ -46,6 +46,10 @@ def cuadrada(matriz:list[list]):
     return cols == rows
 
 def inversa_gj(matriz:list[list]):
+    if determinante_gauss(matriz) == 0:
+        return 0
+    if not cuadrada(matriz):
+        return -1
     matriz = [matriz[x].copy() for x in range(len(matriz))]
 
     for r in range(len(matriz)):
