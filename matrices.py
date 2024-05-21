@@ -1,16 +1,28 @@
 import math
 
 class Cipher:
-    def __init__(self,  key:list[list]) -> None:
+    def __init__(self,  key:list[list]= None) -> None:
         self.key = key
-        self.adjkey = inversa_gj(key)
+        self.adjkey = None
         self.coded = None
 
+    def setKey(self, key:list[list]):
+        self.key = key
+        self.adjkey = inversa_gj(key)
+
     def code(self, txt:list[list]):
+        if not self.key:
+            return
         self.coded = multiplicacion(self.key, txt)
+        return self.coded
     
-    def decipher(self):
-        return multiplicacion(self.adjkey,self.coded)
+    def decipher(self, message = None):
+        if not self.key:
+            return
+        if not self.adjkey:
+            self.adjkey = inversa_gj(self.key)
+
+        return multiplicacion(self.adjkey,message if message else self.coded)
     
     def getCoded(self):
         return self.coded
