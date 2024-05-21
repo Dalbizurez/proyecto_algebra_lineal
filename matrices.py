@@ -1,4 +1,4 @@
-import Math
+import math
 
 class Cipher:
     def __init__(self,  key:list[list]) -> None:
@@ -264,7 +264,7 @@ def magnitud(a, b):
     mag = ((b**2)+(a**2))**0.5
     return mag
 
-def algulo(a, b):
+def angulo(a, b):
     if a == 0:
         r = 'Error'
         return r
@@ -277,12 +277,13 @@ def algulo(a, b):
         elif b < 0:
             b = b * (-1) 
 
-        algulo = math.atan(b/a)
-        return algulo
+        algulo = math.atan((b/a))
+        angulo = algulo * 180/math.pi
+        return angulo
 
 def componentes(a, b):
-    componentex = a * math.sin(b)
-    componentey = a * math.cos(b)
+    componentex = a * math.cos(b * math.pi/180)
+    componentey = a * math.sin(b * math.pi/180)
 
     componentes = [componentex, componentey]
 
