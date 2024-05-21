@@ -1,4 +1,4 @@
-from operaciones_ui import Ui_MainWindow
+from ui.operaciones_ui import Ui_MainWindow
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QApplication, QTextEdit
 from matrices import multiplicacion, suma, resta
