@@ -10,6 +10,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_entre_matrices.clicked.connect(self.operaciones)
         self.btn_matriz.clicked.connect(self.matriz)
         self.btn_codificacion.clicked.connect(self.codificacion)
+        self.btn_markov.clicked.connect(self.markov)
+
+    def markov(self):
+        from markov import MainWindow
+        self.mark = MainWindow()
+        self.mark.show()
 
     def operaciones(self):
         from operaciones import MainWindow

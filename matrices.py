@@ -236,8 +236,8 @@ def transpuesta(matriz:list[list]):
 def orden(matriz:list[list]):
     return len(matriz), len(matriz[0])
 
-def markov(tabla:list[list], probabilidades:list[list], periodos:int):
-    transicion = transpuesta(tabla) 
+def markov(tabla:list[list], probabilidades:list[list], periodos:int, transponer:bool=True):
+    transicion = transpuesta(tabla) if transponer else tabla
     for p in range(periodos):
         probabilidades = multiplicacion(transicion, probabilidades)
     return probabilidades
