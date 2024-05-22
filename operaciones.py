@@ -24,8 +24,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.txt_matriz1.textChanged.connect(lambda:self.validar(self.txt_matriz1))
         self.txt_matriz2.textChanged.connect(lambda:self.validar(self.txt_matriz2))
 
-        self.txt_matriz1.setToolTip("Solo se permite numeros enteros")
-        self.txt_matriz2.setToolTip("Solo se permite numeros enteros")
+        self.txt_matriz1.setToolTip("Solo se permite numeros")
+        self.txt_matriz2.setToolTip("Solo se permite numeros")
 
     def suma(self):
         m1 = get_matriz(self.txt_matriz1)
