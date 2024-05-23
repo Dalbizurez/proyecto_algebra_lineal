@@ -1,5 +1,5 @@
 from ui.markov_ui import Ui_MainWindow
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
+from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QHeaderView
 from matrices import markov, cuadrada
 from UI_operations import *
 
@@ -14,20 +14,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def calcular(self):
         matriz = get_matriz(self.txt_matriz_probabilidades)
+
         vector = get_matriz(self.txt_probabilidad_actual)
+        
         self.tbl_resultado.clear()
         self.tbl_resultado.setStyleSheet("border: 1px solid grey;")
         if (len(matriz) == 0 or len(vector) == 0) or not cuadrada(matriz):
             self.tbl_resultado.setStyleSheet("border: 1px solid red;")
             self.tbl_resultado.setToolTip("La matriz de probabilidades debe ser cuadrada y el vector de probabilidad actual debe tener el mismo numero de filas que la matriz")
             return
-        resultado = markov(matriz, vector, int(self.spn_cambios.text()), False)
+        
+        resultado = markov(matriz, vector, int(self.spn_cambios.text()), self.transponer(matriz))
         
         self.tbl_resultado.setColumnCount(len(resultado[0]))
         self.tbl_resultado.setRowCount(len(resultado))
         for i in range(len(resultado)):
             for j in range(len(resultado[0])):
                 self.tbl_resultado.setItem(i, j, QTableWidgetItem(str(resultado[i][j])))
+        self.tbl_resultado.setVerticalHeaderLabels([f"{chr(65+i)}" for i in range(len(resultado))])
+        self.tbl_resultado.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        self.tbl_resultado.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
 
     def validar_vector(self, widget:QTextEdit):
         valid = validar_matriz(widget) and len(get_matriz(widget)[0]) == 1
@@ -48,3 +54,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Cambiar el color del borde a gris para indicar que no hay error
             widget.setStyleSheet("border: 1px solid grey;")
         self.btn_calcular.setEnabled(valid)
+
+    def transponer(self, posibilidades:list[list[float]]) -> bool:
+        for i in range(len(posibilidades)):
+            acumulador = 0
+            for j in range(len(posibilidades[i])):
+                acumulador += posibilidades[j][i] * 100
+            if acumulador != 100:
+                return True
+        return False
+
+
+    def graficar(self, posibilidades:list[list[float]]):
+        pass
