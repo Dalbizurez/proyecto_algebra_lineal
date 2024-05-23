@@ -14,9 +14,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.txt_matriz_probabilidades.textChanged.connect(lambda:self.validar(self.txt_matriz_probabilidades))
         self.txt_probabilidad_actual.textChanged.connect(lambda:self.validar_vector(self.txt_probabilidad_actual))
 
+        self.actionVer.triggered.connect(str_steps)
         # self.txt_matriz_probabilidades.textChanged.connect(lambda:self.graficar(self.txt_matriz_probabilidades))
 
     def calcular(self):
+        clean_steps()
         matriz = get_matriz(self.txt_matriz_probabilidades)
 
         vector = get_matriz(self.txt_probabilidad_actual)

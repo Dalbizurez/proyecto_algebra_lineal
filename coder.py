@@ -21,7 +21,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.txt_mensaje.textChanged.connect(lambda:self.validar(self.txt_mensaje))
         self.txt_codigo.textChanged.connect(lambda:self.validar(self.txt_codigo))
 
+        self.actionVer.triggered.connect(str_steps)
+
     def code(self):
+        clean_steps()
         if not self.cipher.key:
             self.txt_codificado.setPlainText("Aun no ha definido una clave")
         else:
@@ -29,6 +32,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_codificado.setPlainText(str_matriz(codigo))
 
     def decode(self):
+        clean_steps()
         if not self.cipher.key:
             self.txt_descifrado.setPlainText("Aun no ha definido una clave")
         else:

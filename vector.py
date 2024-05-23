@@ -2,6 +2,7 @@ from ui.vector_ui import Ui_MainWindow
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QApplication, QDoubleSpinBox, QSlider
 from matrices import suma, producto_punto, magnitud, angulo, componentes
+from UI_operations import str_steps, clean_steps
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
@@ -10,6 +11,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.btn_calcular.clicked.connect(self.calcular)
         self.sld_mode.valueChanged.connect(self.cambiar_modo)
+
+        self.actionVer.triggered.connect(str_steps)
 
     def cambiar_modo(self):
         modo = self.sld_mode.value()
@@ -28,6 +31,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lbl2.setText("Componente Y" if modo == 1 else "Angulo (0 - 360)")
     
     def calcular(self):
+        clean_steps()
         modo = self.sld_mode.value()
         if modo == 1:
             x = self.spn_1.value()

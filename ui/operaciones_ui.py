@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'matrices.ui'
+# Form implementation generated from reading ui file '.\entre_matrices.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -12,15 +12,8 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(238, 320)
-        MainWindow.setMinimumSize(QtCore.QSize(238, 320))
+        MainWindow.resize(295, 410)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
-        self.centralwidget.setSizePolicy(sizePolicy)
-        self.centralwidget.setMinimumSize(QtCore.QSize(238, 320))
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -61,15 +54,22 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.gridLayout)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 295, 22))
+        self.menubar.setObjectName("menubar")
+        self.menuPasos = QtWidgets.QMenu(parent=self.menubar)
+        self.menuPasos.setObjectName("menuPasos")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.actionVer = QtGui.QAction(parent=MainWindow)
+        self.actionVer.setObjectName("actionVer")
+        self.menuPasos.addAction(self.actionVer)
+        self.menubar.addAction(self.menuPasos.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        MainWindow.setTabOrder(self.txt_matriz1, self.txt_matriz2)
-        MainWindow.setTabOrder(self.txt_matriz2, self.btn_suma)
-        MainWindow.setTabOrder(self.btn_suma, self.btn_resta)
-        MainWindow.setTabOrder(self.btn_resta, self.btn_multiplicacion)
-        MainWindow.setTabOrder(self.btn_multiplicacion, self.btn_division)
-        MainWindow.setTabOrder(self.btn_division, self.txt_resultado)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -78,3 +78,5 @@ class Ui_MainWindow(object):
         self.btn_resta.setText(_translate("MainWindow", "Resta"))
         self.btn_multiplicacion.setText(_translate("MainWindow", "Multiplicacion"))
         self.btn_division.setText(_translate("MainWindow", "Division"))
+        self.menuPasos.setTitle(_translate("MainWindow", "Pasos"))
+        self.actionVer.setText(_translate("MainWindow", "Ver"))

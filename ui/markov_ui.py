@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'markov.ui'
+# Form implementation generated from reading ui file '.\markov.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -74,10 +74,16 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 605, 22))
         self.menubar.setObjectName("menubar")
+        self.menuPasos = QtWidgets.QMenu(parent=self.menubar)
+        self.menuPasos.setObjectName("menuPasos")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionVer = QtGui.QAction(parent=MainWindow)
+        self.actionVer.setObjectName("actionVer")
+        self.menuPasos.addAction(self.actionVer)
+        self.menubar.addAction(self.menuPasos.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -89,3 +95,5 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Probabilidades actuales"))
         self.label_3.setText(_translate("MainWindow", "Cambios de estado"))
         self.btn_calcular.setText(_translate("MainWindow", "Calcular"))
+        self.menuPasos.setTitle(_translate("MainWindow", "Pasos"))
+        self.actionVer.setText(_translate("MainWindow", "Ver"))

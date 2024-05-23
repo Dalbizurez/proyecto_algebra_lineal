@@ -27,7 +27,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.txt_matriz1.setToolTip("Solo se permite numeros")
         self.txt_matriz2.setToolTip("Solo se permite numeros")
 
+        self.actionVer.triggered.connect(str_steps)
+
     def suma(self):
+        clean_steps()
         m1 = get_matriz(self.txt_matriz1)
         m2 = get_matriz(self.txt_matriz2)
         resultado = suma(m1, m2)
@@ -37,6 +40,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_resultado.setPlainText("No se puede realizar la operacion, para sumar es necesario que las matrices tengan el mismo orden")
 
     def resta(self):
+        clean_steps()
         m1 = get_matriz(self.txt_matriz1)
         m2 = get_matriz(self.txt_matriz2)
         resultado = resta(m1, m2)
@@ -46,6 +50,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_resultado.setPlainText("No se puede realizar la operacion, para restar es necesario que las matrices tengan el mismo orden")
 
     def multiplicacion(self):
+        clean_steps()
         m1 = get_matriz(self.txt_matriz1)
         m2 = get_matriz(self.txt_matriz2)
         resultado = multiplicacion(m1, m2)
@@ -55,6 +60,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_resultado.setPlainText("No se puede realizar la operacion, por favor revise que el numero de columnas de la matriz 1 sea igual al numero de filas de la matriz 2")
 
     def producto_punto(self):
+        pass
         m1 = get_matriz(self.txt_matriz1)
         m2 = get_matriz(self.txt_matriz2)
         resultado = producto_punto(m1, m2)

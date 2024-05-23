@@ -1,7 +1,7 @@
 from ui.operaciones_matriz_ui import Ui_MainWindow
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from matrices import inversa_gj, determinante_gauss, resta, cuadrada
+from matrices import inversa_gj, determinante_gauss, cuadrada
 from UI_operations import *
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -15,8 +15,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.txt_matrix1.textChanged.connect(lambda:self.validar(self.txt_matrix1))
 
+        self.actionVer.triggered.connect(str_steps)
+
 
     def inversa(self):
+        clean_steps()
         resultado = inversa_gj(get_matriz(self.txt_matrix1))
         if resultado == 0:
             self.txt_matrix2.setPlainText("No se puede realizar la operacion, determinante = 0")
@@ -26,6 +29,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_matrix2.setPlainText(str_matriz(resultado))
 
     def determinante(self):
+        clean_steps()
         matriz = get_matriz(self.txt_matrix1)
         if cuadrada(matriz):
             resultado = determinante_gauss(matriz)

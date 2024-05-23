@@ -15,6 +15,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.sld_v1.valueChanged.connect(lambda:self.cambiar_modo(self.sld_v1, 1))
         self.sld_v2.valueChanged.connect(lambda:self.cambiar_modo(self.sld_v2, 2))
+
+        self.actionVer.triggered.connect(str_steps) 
     
 
     def cambiar_modo(self, sld, vector):
@@ -61,6 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
 
     def sumar(self):
+        clean_steps()
         v1 = self.obtener_vector(1)
         v2 = self.obtener_vector(2)
         resultado = suma(v1, v2)
@@ -78,6 +81,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.resize(self.sizeHint())
 
     def producto_punto(self):
+        clean_steps()
         v1 = self.obtener_vector(1)
         v2 = self.obtener_vector(2)
         resultado = producto_punto(v1, v2)

@@ -1,6 +1,8 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QApplication, QTextEdit
 import re
+from pasos_dialog import Pasos_Dialog
+from matrices import steps, clean_steps
 
 NUMBER_REGEX = "-?[0-9]+(?:\.?[0-9]+)?"
 
@@ -33,3 +35,9 @@ def str_matriz(matriz:list[list[int]]):
     for row in matriz:
         txt += " ".join([str(x) for x in row]) + "\n"
     return txt
+
+def str_steps():
+    dialog = Pasos_Dialog()
+    dialog.txt_pasos.setPlainText("\n".join(steps()))
+    dialog.show()
+    dialog.exec()
