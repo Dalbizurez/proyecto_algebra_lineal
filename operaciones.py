@@ -60,7 +60,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_resultado.setPlainText("No se puede realizar la operacion, por favor revise que el numero de columnas de la matriz 1 sea igual al numero de filas de la matriz 2")
 
     def producto_punto(self):
-        pass
+        return
         m1 = get_matriz(self.txt_matriz1)
         m2 = get_matriz(self.txt_matriz2)
         resultado = producto_punto(m1, m2)

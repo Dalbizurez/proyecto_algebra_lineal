@@ -2,7 +2,7 @@ from ui.vector_ui import Ui_MainWindow
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QWidget, QApplication, QDoubleSpinBox, QSlider
 from matrices import suma, producto_punto, magnitud, angulo, componentes
-from UI_operations import str_steps, clean_steps
+from UI_operations import str_steps, clean_steps, vector_graph
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
@@ -13,6 +13,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.sld_mode.valueChanged.connect(self.cambiar_modo)
 
         self.actionVer.triggered.connect(str_steps)
+
+        self.actionVer_2.triggered.connect(lambda: vector_graph(self.obtener_vector()))
+
+
 
     def cambiar_modo(self):
         modo = self.sld_mode.value()
@@ -47,3 +51,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             x, y = componentes(res_magnitud, res_angulo)
             self.txt_resultado.setText(f"Ax: {x}; Ay: {y} {direction_y}{direction_x}")
         self.resize(self.sizeHint())
+
+    def obtener_vector(self):
+        sld = self.sld_mode
+        modo = sld.value()
+        a = self.spn_1.value()
+        b = self.spn_2.value()
+        match modo:
+            case 2:
+                return [componentes(a, b)]
+            case 1:
+                return [[a, b]]

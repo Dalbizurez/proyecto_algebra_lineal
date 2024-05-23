@@ -17,6 +17,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.sld_v2.valueChanged.connect(lambda:self.cambiar_modo(self.sld_v2, 2))
 
         self.actionVer.triggered.connect(str_steps) 
+
+        self.actionVer_2.triggered.connect(lambda: vector_graph([self.obtener_vector(1)[0], self.obtener_vector(2)[0]], True))
     
 
     def cambiar_modo(self, sld, vector):

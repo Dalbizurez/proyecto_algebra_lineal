@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'operaciones_vectores.ui'
+# Form implementation generated from reading ui file '.\operaciones_vectores.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -117,13 +117,19 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName("menubar")
         self.menuPasos = QtWidgets.QMenu(parent=self.menubar)
         self.menuPasos.setObjectName("menuPasos")
+        self.menuVector = QtWidgets.QMenu(parent=self.menubar)
+        self.menuVector.setObjectName("menuVector")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.actionVer = QtGui.QAction(parent=MainWindow)
         self.actionVer.setObjectName("actionVer")
+        self.actionVer_2 = QtGui.QAction(parent=MainWindow)
+        self.actionVer_2.setObjectName("actionVer_2")
         self.menuPasos.addAction(self.actionVer)
+        self.menuVector.addAction(self.actionVer_2)
+        self.menubar.addAction(self.menuVector.menuAction())
         self.menubar.addAction(self.menuPasos.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -141,4 +147,6 @@ class Ui_MainWindow(object):
         self.btn_suma.setText(_translate("MainWindow", "Sumar"))
         self.btn_producto_punto.setText(_translate("MainWindow", "Producto Punto"))
         self.menuPasos.setTitle(_translate("MainWindow", "Pasos"))
+        self.menuVector.setTitle(_translate("MainWindow", "Vector"))
         self.actionVer.setText(_translate("MainWindow", "Ver"))
+        self.actionVer_2.setText(_translate("MainWindow", "Ver"))
