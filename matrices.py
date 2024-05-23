@@ -1,5 +1,14 @@
 import math
 
+pasos = []
+
+def steps():
+    return pasos
+
+def clean_steps():
+    global pasos
+    pasos = []
+
 class Cipher:
     def __init__(self,  key:list[list]= None) -> None:
         self.key = key
@@ -270,44 +279,40 @@ def resta(a:list[list], b:list[list]):
             t[y] = f[y] - r[y]
     return matriz_resta
 
-def producto_punto(a:list[list],b):
-    if orden(b) != (1, 1):
+def producto_punto(a:list[list],b:list[list]):
+    if orden(b) != orden(a):
         return
-    b = b[0][0]
-    matriz_producto = [[0 for cols in range(len(a[0]))].copy() for rows in range(len(a))]
-    n=-1
-    for i in range(0,len(a),1):
-        n+=1
-        f=a[i]
-        r=matriz_producto[i]
-        for y in range(0,len(f),1):
-            r[y] = f[y] * b
-    return matriz_producto
+    producto = 0
+    for i in range(0,len(a)):
 
-def magnitud(a, b):
-    mag = ((b**2)+(a**2))**0.5
+        for y in range(0,len(a[i]),1):
+            producto += (a[i][y] * b[i][y])
+    return producto
+
+def magnitud(x, y):
+    mag = ((y**2)+(x**2))**0.5
     return mag
 
-def angulo(a, b):
-    if a == 0:
+def angulo(x, y):
+    if x == 0:
         r = 'Error'
         return r
     else :
-        if a < 0 and b < 0:
-            a = a * (-1)
-            b = b * (-1)
-        elif a < 0:
-            a = a * (-1)
-        elif b < 0:
-            b = b * (-1) 
+        if x < 0 and y < 0:
+            x = x * (-1)
+            y = y * (-1)
+        elif x < 0:
+            x = x * (-1)
+        elif y < 0:
+            y = y * (-1) 
 
-        algulo = math.atan((b/a))
-        angulo = algulo * 180/math.pi
+        angulo = math.atan((y/x))
+        angulo = angulo * 180/math.pi
         return angulo
 
-def componentes(a, b):
-    componentex = a * math.cos(b * math.pi/180)
-    componentey = a * math.sin(b * math.pi/180)
+def componentes(magnitud, angulo):
+    componentex = magnitud * math.cos(angulo * math.pi/180)
+    componentey = magnitud * math.sin(angulo * math.pi/180)
 
     componentes = [componentex, componentey]
 

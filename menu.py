@@ -11,6 +11,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_matriz.clicked.connect(self.matriz)
         self.btn_codificacion.clicked.connect(self.codificacion)
         self.btn_markov.clicked.connect(self.markov)
+        self.btn_vector.clicked.connect(self.vector)
+        self.btn_vectores.clicked.connect(self.vectores)
+
 
     def markov(self):
         from markov import MainWindow
@@ -31,3 +34,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         from coder import MainWindow
         self.cod = MainWindow()
         self.cod.show()
+
+    def vector(self):
+        from vector import MainWindow
+        self.vec = MainWindow()
+        self.vec.show()
+    
+    def vectores(self):
+        from vectores import MainWindow
+        self.vec = MainWindow()
+        self.vec.show()
