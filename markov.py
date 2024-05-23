@@ -1,7 +1,9 @@
 from ui.markov_ui import Ui_MainWindow
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QHeaderView
+from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidgetItem,QHeaderView, QTextEdit
+from PyQt6.QtGui import QPixmap
 from matrices import markov, cuadrada
 from UI_operations import *
+import graphviz as gv
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
@@ -11,6 +13,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_calcular.clicked.connect(self.calcular)
         self.txt_matriz_probabilidades.textChanged.connect(lambda:self.validar(self.txt_matriz_probabilidades))
         self.txt_probabilidad_actual.textChanged.connect(lambda:self.validar_vector(self.txt_probabilidad_actual))
+
+        # self.txt_matriz_probabilidades.textChanged.connect(lambda:self.graficar(self.txt_matriz_probabilidades))
 
     def calcular(self):
         matriz = get_matriz(self.txt_matriz_probabilidades)
@@ -34,6 +38,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tbl_resultado.setVerticalHeaderLabels([f"{chr(65+i)}" for i in range(len(resultado))])
         self.tbl_resultado.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
         self.tbl_resultado.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        self.graficar(self.txt_matriz_probabilidades)
 
     def validar_vector(self, widget:QTextEdit):
         valid = validar_matriz(widget) and len(get_matriz(widget)[0]) == 1
@@ -65,5 +70,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         return False
 
 
-    def graficar(self, posibilidades:list[list[float]]):
-        pass
+    def graficar(self, qtxt:QTextEdit):
+        matriz = get_matriz(qtxt)
+        node_tags = [f"{chr(65+i)}" for i in range(len(matriz))]
+        graph = gv.Digraph(format='png')
+        
+        for i in range(len(matriz)):
+            graph.node(node_tags[i])
+            for j in range(len(matriz[i])):
+                graph.edge(node_tags[i], node_tags[j], label=str(matriz[i][j]))
+
+        graph.render('img/markov')
+        pixmap = QPixmap("img/markov.png")
+        self.lbl_graph.setScaledContents(True)
+        pixmap.scaled(self.lbl_graph.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+        self.lbl_graph.setPixmap(pixmap)
