@@ -20,7 +20,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def inversa(self):
         clean_steps()
-        resultado = inversa_gj(get_matriz(self.txt_matrix1))
+        matriz = get_matriz(self.txt_matrix1)
+        if not matriz[0]:
+            return
+        resultado = inversa_gj(get_matriz(matriz))
         if resultado == 0:
             self.txt_matrix2.setPlainText("No se puede realizar la operacion, determinante = 0")
         elif resultado == -1:
